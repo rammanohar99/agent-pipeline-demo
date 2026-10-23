@@ -166,3 +166,7 @@ ruff check . && pytest -q
 
 Built with [OpenHands Agent Canvas](https://github.com/OpenHands/OpenHands) and
 [Claude Code](https://www.anthropic.com/claude-code).
+
+## License
+
+[MIT](LICENSE). Use it, fork it, adapt the pipeline to your own repos.
