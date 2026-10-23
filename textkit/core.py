@@ -1,3 +1,15 @@
+import re
+import unicodedata
+
+
+def slugify(text: str) -> str:
+    """Convert text to a lowercase, hyphen-separated, accent-free slug."""
+    normalized = unicodedata.normalize("NFKD", text)
+    stripped = "".join(ch for ch in normalized if not unicodedata.combining(ch))
+    lowered = stripped.lower()
+    return re.sub(r"[^a-z0-9]+", "-", lowered).strip("-")
+
+
 def capitalize_words(text: str) -> str:
     """Capitalize the first letter of every whitespace-separated word."""
     return " ".join(word[:1].upper() + word[1:] for word in text.split())

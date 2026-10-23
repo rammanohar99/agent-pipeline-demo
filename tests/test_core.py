@@ -1,6 +1,6 @@
 import pytest
 
-from textkit import capitalize_words, truncate, word_count
+from textkit import capitalize_words, slugify, truncate, word_count
 
 
 def test_capitalize_words():
@@ -55,3 +55,27 @@ def test_truncate_raises_when_max_len_too_small():
 def test_truncate_fits_unchanged_even_when_max_len_shorter_than_suffix():
     assert truncate("ab", 2) == "ab"
     assert truncate("", 0) == ""
+
+
+def test_slugify_basic():
+    assert slugify("Hello, World!") == "hello-world"
+
+
+def test_slugify_strips_accents():
+    assert slugify("Café") == "cafe"
+
+
+def test_slugify_collapses_runs_of_non_alphanumeric():
+    assert slugify("one   two---three") == "one-two-three"
+
+
+def test_slugify_trims_leading_and_trailing_hyphens():
+    assert slugify("  --Hello World--  ") == "hello-world"
+
+
+def test_slugify_empty():
+    assert slugify("") == ""
+
+
+def test_slugify_only_punctuation():
+    assert slugify("!!!") == ""
