@@ -10,10 +10,10 @@ def word_count(text: str) -> int:
 
 def truncate(text: str, max_len: int, suffix: str = "...") -> str:
     """Shorten text to max_len characters, cutting at a word boundary and appending suffix."""
-    if max_len < len(suffix):
-        raise ValueError("max_len must be at least as long as suffix")
     if len(text) <= max_len:
         return text
+    if max_len < len(suffix):
+        raise ValueError("max_len must be at least as long as suffix")
 
     available = max_len - len(suffix)
     truncated = text[:available]

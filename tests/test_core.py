@@ -50,3 +50,8 @@ def test_truncate_no_word_boundary_hard_cuts():
 def test_truncate_raises_when_max_len_too_small():
     with pytest.raises(ValueError):
         truncate("hello world", 2, suffix="...")
+
+
+def test_truncate_fits_unchanged_even_when_max_len_shorter_than_suffix():
+    assert truncate("ab", 2) == "ab"
+    assert truncate("", 0) == ""
